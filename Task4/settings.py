@@ -33,11 +33,6 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Application definition
 
-
-db_from_env = dj_database_url.config()
-DATABASES = {'default': dj_database_url.config()}
-
-
 INSTALLED_APPS = [
     # my app
     'brosis',
@@ -167,10 +162,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-    DATABASES = {'default': dj_database_url.config()}
-
-django_heroku.settings(locals())
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
