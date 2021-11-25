@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -31,8 +33,10 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Application definition
 
+
 db_from_env = dj_database_url.config()
 DATABASES = {'default': dj_database_url.config()}
+
 
 INSTALLED_APPS = [
     # my app
@@ -166,5 +170,7 @@ LOGIN_REDIRECT_URL = '/'
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
+
+django_heroku.settings(locals())
 
 
