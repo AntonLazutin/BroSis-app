@@ -7,7 +7,10 @@ from .models import *
 
 def index(request):
     users = User.objects.all()
-    latest_message = Message.objects.all().latest('date')
+    try:
+        latest_message = Message.objects.all().latest('date')
+    except Message.DoesNotExist:
+        latest_message = None
     bro_count = Message.objects.filter(text='Bro!').count()
     sis_count = Message.objects.filter(text='Sis!').count()
     context = {'users': users, 'latest_message': latest_message, 'bro_count': bro_count, 'sis_count': sis_count}
