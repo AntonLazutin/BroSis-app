@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Application definition
 
-db_from_env = dj-database-url.config()
+db_from_env = dj_database_url.config()
 DATABASES = {'default': dj_database_url.config()}
 
 INSTALLED_APPS = [
