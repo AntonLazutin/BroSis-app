@@ -22,9 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # Hello, Pavel!
 
-with open('secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
-
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-m_ednl!**ly8w(^1@_f^vn0mmrn0bq2j6#n(#kh7u_j#eh4%&b')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
@@ -34,7 +32,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Application definition
 
 db_from_env = dj-database-url.config()
-DATABASE['default'].update(db_from_env)
+DATABASES = {'default': dj_database_url.config()}
 
 INSTALLED_APPS = [
     # my app
